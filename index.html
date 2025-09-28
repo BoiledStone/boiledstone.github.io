@@ -1,96 +1,174 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Boiled Stone 🎵</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      color: #eee;
-      background: url('images/fond.png') no-repeat center center fixed;
-      background-size: cover;
-      backdrop-filter: blur(3px);
-      text-align: center;
+    :root{ --dark:#111; --dark-opaque:#333; --muted:#ccc; --accent:#ff5500; }
+
+    html,body{ height:100%; margin:0; font-family:Arial, sans-serif; color:#eee; background:url('images/fond.png') center/cover fixed no-repeat; }
+
+    /* Header simple : pas de box-shadow, pas de pseudo-élément */
+    header{
+      padding:2rem;
+      text-align:center;
     }
 
-    /* Header : rectangle opaque gris foncé */
-    header {
-      background-color: #333; /* OPAQUE */
-      padding: 2rem;
+    /* Rectangle sombre OPAQUE derrière le titre */
+    header h1{
+      display:inline-block;
+      margin:0;
+      padding:0.5rem 1.5rem;
+      font-size:3rem;
+      color:#fff;
+      background-color: var(--dark-opaque); /* rectangle opaque gris foncé */
+      border-radius:12px;
+      box-shadow: none; /* suppression de toute surbrillance */
     }
 
-    header h1 {
-      font-size: 3rem;
-      margin: 0;
+    header p{
+      margin:0.5rem 0 0 0;
+      color:var(--muted);
+      font-size:1.05rem;
     }
 
-    header p {
-      font-size: 1.2rem;
-      color: #ccc;
+    /* Section musique alignée à gauche, fond mi-transparent */
+    .container{
+      display:flex;
+      gap:20px;
+      align-items:flex-start;
+      padding:20px;
     }
 
-    /* Bloc musique semi-transparent */
-    .music {
-      background-color: rgba(0,0,0,0.6);
-      margin: 20px auto;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 700px;
+    .music{
+      width:50%;               /* la zone musique occupe la moitié gauche */
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+      background:rgba(0,0,0,0.6); /* mi-transparent */
+      padding:20px;
+      border-radius:12px;
+      box-sizing:border-box;
+      margin-left:20px; /* tasse à gauche */
     }
 
-    iframe {
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      margin-bottom: 10px;
+    .track-container{
+      display:flex;
+      gap:15px;
+      align-items:flex-start;
     }
 
-    footer {
-      padding: 15px;
-      color: #aaa;
-      font-size: 0.9rem;
-      background-color: #000; /* footer opaque */
+    .track-player{
+      width:50%;
     }
 
-    a {
-      color: #ff5500;
-      text-decoration: none;
+    .track-player iframe{
+      width:100%;
+      height:300px;
+      border-radius:12px;
+      border:none;
+      display:block;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .track-info{
+      width:50%;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .track-info .links{ font-size:10px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .track-info .links a{ color:var(--accent); text-decoration:none; }
+    .track-info .links a:hover{ text-decoration:underline; }
+
+    .track-info .description{
+      background:var(--dark);
+      padding:10px;
+      border-radius:8px;
+      color:var(--muted);
+      min-height:300px;
+      text-align:left;
+    }
+
+    /* Colonne droite prévue pour images (vide par défaut) */
+    .right-column{
+      width:50%;
+      padding:20px;
+      box-sizing:border-box;
+    }
+
+    footer{
+      margin:20px;
+      padding:12px;
+      background:#000;
+      color:#aaa;
+      text-align:center;
+      border-radius:8px;
+    }
+
+    @media (max-width:900px){
+      .container{ flex-direction:column; }
+      .music, .right-column{ width:100%; margin-left:0; }
+      .track-player iframe{ height:200px; }
+      .track-info .description{ min-height:150px; }
     }
   </style>
 </head>
 <body>
+
   <header>
     <h1>Boiled Stone</h1>
     <p>Music 🎶</p>
   </header>
 
-  <section class="music">
-    <!-- Première chanson -->
-    <iframe width="50%" height="300" scrolling="no" frameborder="no" allow="autoplay" 
-      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2177804334&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
-    </iframe>
-    <div style="font-size: 10px; color: #cccccc; line-break: anywhere; word-break: normal; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-family: Arial, sans-serif; font-weight: 100;">
-      <a href="https://soundcloud.com/boiled_stone" target="_blank">Boiled</a> · 
-      <a href="https://soundcloud.com/boiled_stone/project_25" target="_blank">Project_25</a>
-    </div>
+  <div class="container">
+    <!-- Zone musique (gauche) -->
+    <section class="music">
+      <!-- Track 1 -->
+      <div class="track-container">
+        <div class="track-player">
+          <iframe allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2177804334&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+          </iframe>
+        </div>
+        <div class="track-info">
+          <div class="links">
+            <a href="https://soundcloud.com/boiled_stone" target="_blank" rel="noopener">Boiled</a> ·
+            <a href="https://soundcloud.com/boiled_stone/project_25" target="_blank" rel="noopener">Project_25</a>
+          </div>
+          <div class="description">Description</div>
+        </div>
+      </div>
 
-    <!-- Deuxième chanson -->
-    <iframe width="50%" height="300" scrolling="no" frameborder="no" allow="autoplay" 
-      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2136762345&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
-    </iframe>
-    <div style="font-size: 10px; color: #cccccc; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-family: Arial, sans-serif; font-weight: 100;">
-      <a href="https://soundcloud.com/boiled_stone" target="_blank">Boiled</a> · 
-      <a href="https://soundcloud.com/boiled_stone/project_22" target="_blank">Project_22</a>
-    </div>
-  </section>
+      <!-- Track 2 -->
+      <div class="track-container">
+        <div class="track-player">
+          <iframe allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2136762345&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+          </iframe>
+        </div>
+        <div class="track-info">
+          <div class="links">
+            <a href="https://soundcloud.com/boiled_stone" target="_blank" rel="noopener">Boiled</a> ·
+            <a href="https://soundcloud.com/boiled_stone/project_22" target="_blank" rel="noopener">Project_22</a>
+          </div>
+          <div class="description">Description</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Colonne droite : place pour images (vide, à remplir) -->
+    <aside class="right-column">
+      <!-- Exemple de cadre image (remplace par tes images) -->
+      <div style="background:#222; border-radius:8px; height:140px; margin-bottom:16px;"></div>
+      <div style="background:#222; border-radius:8px; height:140px;"></div>
+    </aside>
+  </div>
 
   <footer>
     © 2025 BoiledStone — Tous droits réservés | All rights reserved
   </footer>
+
 </body>
 </html>
