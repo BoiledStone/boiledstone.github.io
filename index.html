@@ -15,18 +15,32 @@
     }
 
     header {
-      background-color: rgba(0,0,0,0.6); /* semi-transparent derrière l'ensemble header */
+      background-color: rgba(0,0,0,0.6); /* semi-transparent */
       padding: 2rem;
       text-align: center;
     }
 
+    /* Titre avec fond opaque superposé devant le header semi-transparent */
     header h1 {
+      position: relative; /* nécessaire pour ::before */
       font-size: 3rem;
       margin: 0;
       display: inline-block;
-      background-color: #000; /* fond opaque derrière le titre */
       padding: 0.5rem 1.5rem;
       border-radius: 20px;
+      z-index: 1; /* au-dessus du pseudo-élément */
+    }
+
+    header h1::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000; /* fond opaque */
+      border-radius: 20px;
+      z-index: -1; /* derrière le texte, devant le header */
     }
 
     header p {
@@ -39,16 +53,16 @@
     .music {
       display: flex;
       flex-direction: column;
-      align-items: flex-start; /* tout à gauche */
+      align-items: flex-start;
       gap: 20px;
-      margin: 20px 0 20px 20px; /* marge à gauche pour tasser à gauche */
-      max-width: 50%; /* limite la largeur à gauche pour laisser de la place à droite */
+      margin: 20px 0 20px 20px; /* tasse à gauche */
+      max-width: 50%; /* laisse de la place à droite pour images */
     }
 
     .track-container {
       display: flex;
       width: 100%;
-      background-color: rgba(0,0,0,0.6); /* semi-transparent pour les chansons */
+      background-color: rgba(0,0,0,0.6); /* semi-transparent pour chansons */
       padding: 15px;
       border-radius: 12px;
       gap: 15px;
@@ -67,7 +81,7 @@
     }
 
     .track-info {
-      width: 50%; /* moitié restante pour la description */
+      width: 50%; /* moitié restante pour description */
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -99,7 +113,7 @@
       padding: 10px;
       color: #ccc;
       font-size: 0.9rem;
-      min-height: 300px; /* même hauteur que le player */
+      min-height: 300px; /* même hauteur que player */
       text-align: left;
     }
 
