@@ -13,11 +13,10 @@
       backdrop-filter: blur(3px);
     }
 
-    /* Bandeau haut gris foncé opaque */
     header {
       padding: 2rem;
       text-align: center;
-      background-color: #222; /* gris foncé opaque */
+      background-color: #111; /* DARKER header */
     }
 
     header h1 {
@@ -32,18 +31,17 @@
       font-size: 1.1rem;
     }
 
-    /* Section musique tassée fortement à gauche */
     .music {
       display: flex;
       flex-direction: column;
       gap: 20px;
-      margin: 20px 0 20px 20px; /* plus serré à gauche */
-      max-width: 45%; /* réduit encore plus la largeur */
+      margin: 20px 0 20px 20px;
+      max-width: 45%;
     }
 
     .track-container {
       display: flex;
-      background-color: rgba(0,0,0,0.6); /* semi-transparent */
+      background-color: rgba(0,0,0,0.6);
       padding: 15px;
       border-radius: 12px;
       gap: 15px;
@@ -95,7 +93,7 @@
       padding: 15px;
       color: #aaa;
       font-size: 0.9rem;
-      background-color: #222; /* gris foncé opaque */
+      background-color: #222;
       text-align: center;
     }
 
@@ -155,6 +153,22 @@
         <div class="description">Messed with sound</div>
       </div>
     </div>
+
+    <!-- Troisième chanson -->
+    <div class="track-container">
+      <div class="track-player">
+        <iframe allow="autoplay"
+          src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2178270513%3Fsecret_token%3Ds-TPn9grrBKiu&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+        </iframe>
+      </div>
+      <div class="track-info">
+        <div class="links">
+          <a href="https://soundcloud.com/boiled_stone" target="_blank">Boiled</a> · 
+          <a href="https://soundcloud.com/boiled_stone/bonusproject_51/s-TPn9grrBKiu" target="_blank">bonusecretProject_51</a>
+        </div>
+        <div class="description">Exclusive hidden project 🔒</div>
+      </div>
+    </div>
   </section>
 
   <footer>
@@ -163,4 +177,3 @@
 
 </body>
 </html>
-
